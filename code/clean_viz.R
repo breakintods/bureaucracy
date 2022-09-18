@@ -157,8 +157,6 @@ colnames(cor_numvar_pr) <-
     "Democracy", "GDP growth", "GDP per capita", "Unemployment", "Procedures to register a property",
     "Days to register a property", "Absence of corruption")
 rownames(cor_numvar_pr) <-colnames(cor_numvar_pr)
-# save the data for a corplot
-save(cor_numvar_pr,file = file.path(filepath,"corplotdata.RData"))
 
 corrplot(cor_numvar_pr, type="full", tl.col="black", method="color")
 
