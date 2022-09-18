@@ -186,4 +186,32 @@ grid.arrange(
   
   ncol = 1, nrow = 2)
 
+# add grouped plot
 
+# Trends by year_income_group 
+
+# create yearly average data
+# Summary statistics by year_income_group
+# only for present effects
+mean_yr_inc_pr <- present %>%
+  group_by(Year, income_group) %>%
+  summarise_at(vars(Efficiency:absence_corr), list(mean))
+mean_yr_inc_pr<-
+  data.frame(lapply(mean_yr_inc_pr, function(y) if(is.numeric(y)) round(y, 3) else y))
+
+# in Efficiency of government spending
+# in % of government debt to GDP by income_group
+rename <- c(`High_income` = "High-income",`Low_income` = "Low-income",
+            `Lower_middle_income`="Lower middle-income",
+            `Upper_middle_income`="Upper middle-income")
+grid.arrange(
+  ggplot(data=mean_yr_inc_pr, aes(x=as.factor(Year), y=Efficiency, group=income_group))+
+    geom_line() + geom_smooth(method = "lm", formula = y ~ poly(x, 3), se = F) + labs(x='Year') + 
+    labs(y='Efficiency of government spending') + theme_classic() +
+    scale_y_continuous()+
+    facet_wrap(~income_group, labeller = as_labeller(rename), ncol = 4),
+  ggplot(data=mean_yr_inc_pr, aes(x=as.factor(Year), y=govdbtshgdp, group=income_group))+
+    geom_line() + geom_smooth(method = "lm", formula = y ~ poly(x, 3), se = F) + labs(x='Year') + 
+    labs(y='% of government debt to GDP') + theme_classic() +
+    scale_y_continuous()+
+    facet_wrap(~income_group, ncol = 4, labeller = as_labeller(rename)), ncol = 1, nrow = 2)
