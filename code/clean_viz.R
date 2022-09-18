@@ -151,14 +151,14 @@ save(present,file = file.path(filepath,"cleandata.RData"))
 
 num_cols_pr <- unlist(lapply(present, is.numeric))
 corrplot_pr <- present[,num_cols_pr] # correlations of all numeric variables
-cor_numvar_pr <- cor(corrplot_pr, use="pairwise.complete.obs") 
+cor_numvar_pr <- cor(corrplot_pr, use="pairwise.complete.obs")
 colnames(cor_numvar_pr) <- 
   c("Government spending efficiency", "Government debt % of gdp", "Budget balance % of gdp", "Budget transparency", "Government effectiveness",
     "Democracy", "GDP growth", "GDP per capita", "Unemployment", "Procedures to register a property",
     "Days to register a property", "Absence of corruption")
 rownames(cor_numvar_pr) <-colnames(cor_numvar_pr)
-
-
+# save the data for a corplot
+save(cor_numvar_pr,file = file.path(filepath,"corplotdata.RData"))
 
 corrplot(cor_numvar_pr, type="full", tl.col="black", method="color")
 
@@ -198,6 +198,8 @@ mean_yr_inc_pr <- present %>%
   summarise_at(vars(Efficiency:absence_corr), list(mean))
 mean_yr_inc_pr<-
   data.frame(lapply(mean_yr_inc_pr, function(y) if(is.numeric(y)) round(y, 3) else y))
+#save grouped by income yearly averaged data
+save(mean_yr_inc_pr,file = file.path(filepath,"yrav_byincgr.RData"))
 
 # in Efficiency of government spending
 # in % of government debt to GDP by income_group
