@@ -192,7 +192,6 @@ grid.arrange(
 
 # create yearly average data
 # Summary statistics by year_income_group
-# only for present effects
 mean_yr_inc_pr <- present %>%
   group_by(Year, income_group) %>%
   summarise_at(vars(Efficiency:absence_corr), list(mean))
