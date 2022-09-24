@@ -1,3 +1,3 @@
 # bureaucracy
 
-This is my first (test) project on GitHub that contains some visuals from my master thesis.
+This is my first project on GitHub that contains some visuals from my master thesis.
