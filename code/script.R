@@ -1,18 +1,13 @@
-# Reopen file with encoding UTF-8
+# load libraries
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load('ggplot2','corrplot','gridExtra', 'dplyr', 'car', 'lmtest', 'statmod',
+               'ggalt', 'dplyr', 'readxl', 'plm', 'data.table', 'sandwich', 'data.table',
+               'writexl', 'lares', 'ggpubr', 'stargazer', 'fastDummies', 'Hmisc')
 
-rm(list=ls())
+###### Load data ######
 
-# Load libraries
-
-loadmanylibs <- c('ggplot2','corrplot','gridExtra', 'dplyr', 'car', 'lmtest', 'statmod',
-                  'ggalt', 'dplyr', 'readxl', 'plm', 'data.table', 'sandwich',
-                  'writexl', 'lares', 'ggpubr', 'stargazer', 'fastDummies', 'Hmisc')
-#install.packages(loadmanylibs)
-lapply(loadmanylibs, require, character.only = TRUE)
-
-###### Load data and data manipulation ######
-
-data <- read_excel("C:/Users/u04a7wq/Documents/thesis/data.xlsx")
+id <- "1dxIbCsIHd3NzPccU-xYw9hN15oQmY5pj"
+data <- read.csv(sprintf("https://docs.google.com/uc?id=%s&export=download", id))
 names(data)
 
 # Transform variable
@@ -711,3 +706,4 @@ lmodFull_cre_norm<-pldv(Efficiency_norm~days+procedures+absence_corr+opn_bdgt+go
                         data = lagged, index = c("Country", "Year"), model = "random")
 summary(lmodFull_cre_norm)
 stargazer(lmodFull_cre_hc, type = "text", digits = 4) #to compare
+
