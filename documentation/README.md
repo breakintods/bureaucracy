@@ -35,7 +35,7 @@ In our research, we investigated the impact of bureaucracy on the efficiency of 
 
 <h4>References</h4>
 
-Karpenko, Anastasiia. “How does the duration of bureaucratic procedures affect the efficiency of government spending“. Master’s thesis. Kyiv School of Economics, 2022.
+Karpenko, Anastasiia. <a href="https://kse.ua/wp-content/uploads/2022/11/Final_thesis_Karpenko_08.08.22.pdf">“How does the duration of bureaucratic procedures affect the efficiency of government spending“</a>. Master’s thesis. Kyiv School of Economics, 2022.
 
 Moynihan, D., P. Herd, and H. Harvey. 2015. “Administrative Burden: Learning, Psychological, and Compliance Costs in Citizen-State Interactions.” Journal of Public Administration Research and Theory 25, no. 1 (January): 43–69.
 
