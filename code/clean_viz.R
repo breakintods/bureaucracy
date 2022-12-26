@@ -1,14 +1,14 @@
 # load libraries
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load('ggplot2','corrplot','gridExtra', 'dplyr', 'car', 'lmtest', 'statmod',
+               'ggalt', 'dplyr', 'readxl', 'plm', 'data.table', 'sandwich', 'data.table',
+               'writexl', 'lares', 'ggpubr', 'stargazer', 'fastDummies', 'Hmisc')
 
-loadmanylibs <- c('ggplot2','corrplot','gridExtra', 'dplyr', 'car', 'lmtest', 'statmod',
-                  'ggalt', 'dplyr', 'readxl', 'plm', 'data.table', 'sandwich',
-                  'writexl', 'lares', 'ggpubr', 'stargazer', 'fastDummies', 'Hmisc')
-#install.packages(loadmanylibs)
-lapply(loadmanylibs, require, character.only = TRUE)
+###### Load data ######
 
-###### Clean data ######
+id <- "1dxIbCsIHd3NzPccU-xYw9hN15oQmY5pj"
+data <- read.csv(sprintf("https://docs.google.com/uc?id=%s&export=download", id))
 
-data <- read_excel("C:/Users/u04a7wq/Documents/thesis/data.xlsx")
 names(data)
 
 # Transform variable
@@ -84,7 +84,7 @@ all_num_round <-
   data.frame(lapply(all_num, function(y) if(is.numeric(y)) round(y, 3) else y)) 
 
 present <- all_num_round
-  
+
 # Check for NA by row
 
 na_rows_pr <- rowSums(is.na(present))
@@ -140,10 +140,6 @@ class(present)
 # turn grouped_df back to data.frame format
 
 present<-as.data.frame(present)
-
-# save this data
-filepath <- file.path("C:/Users/пк/Desktop/bureaucracy/processed_data")
-save(present,file = file.path(filepath,"cleandata.RData"))
 
 # Data visualisation
 
@@ -214,3 +210,4 @@ grid.arrange(
     labs(y='% of government debt to GDP') + theme_classic() +
     scale_y_continuous()+
     facet_wrap(~income_group, ncol = 4, labeller = as_labeller(rename)), ncol = 1, nrow = 2)
+
